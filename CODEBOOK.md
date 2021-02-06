@@ -12,7 +12,7 @@ if (!file.exists('./UCI HAR Dataset.zip')){
 
 ## Read and Convert Data
 
-***Data is read file by file and converted into a single data frame
+### Data is read file by file and converted into a single data frame
 
 features <- read.csv('./UCI HAR Dataset/features.txt', header = FALSE, sep = ' ')
 features <- as.character(features[,2])
@@ -50,7 +50,7 @@ data.sub$activity <- activity.labels[data.sub$activity]
 
 #### 4. Appropriately labels the data set with descriptive variable names.
 
-Replace the names in data set with names from activity labels
+### Replace the names in data set with names from activity labels
 
 name.new <- names(data.sub)
 name.new <- gsub("[(][)]", "", name.new)
@@ -66,7 +66,7 @@ names(data.sub) <- name.new
 
 ### 5. From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.
 
-**Tidy data as output as data_tidy.txt file
+### Tidy data as output as data_tidy.txt file
 
 data.tidy <- aggregate(data.sub[,3:81], by = list(activity = data.sub$activity, subject = data.sub$subject),FUN = mean)
 write.table(x = data.tidy, file = "data_tidy.txt", row.names = FALSE)
